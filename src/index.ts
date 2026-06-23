@@ -35,10 +35,6 @@ function plugin(ctx: PicGoContext) {
     },
     commands(commandCtx: PicGoContext): PicGoCommandItem[] {
       const config = getConfig(commandCtx)
-      if (!config.manualUploadShortcut) {
-        return []
-      }
-
       return [
         {
           name: 'manualUpload',

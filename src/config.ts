@@ -3,6 +3,7 @@ import { GiteaUploaderConfig, PicGoConfigItem, PicGoContext, UploadMode } from '
 const CONFIG_KEY = 'picBed.gitea-uploader'
 
 export const DEFAULT_RAW_URL_TEMPLATE = '{host}/{owner}/{repo}/raw/branch/{branch}/{path}'
+export const DEFAULT_MANUAL_UPLOAD_SHORTCUT = 'Ctrl+Shift+G'
 
 export function getConfig(ctx: PicGoContext): GiteaUploaderConfig {
   const raw = ctx.getConfig?.<Partial<GiteaUploaderConfig>>(CONFIG_KEY) ?? {}
@@ -16,7 +17,7 @@ export function getConfig(ctx: PicGoContext): GiteaUploaderConfig {
     pathPrefix: trimSlashes(raw.pathPrefix ?? ''),
     uploadMode: normalizeMode(raw.uploadMode),
     rawUrlTemplate: raw.rawUrlTemplate || DEFAULT_RAW_URL_TEMPLATE,
-    manualUploadShortcut: normalizeShortcut(raw.manualUploadShortcut)
+    manualUploadShortcut: normalizeShortcut(raw.manualUploadShortcut) || DEFAULT_MANUAL_UPLOAD_SHORTCUT
   }
 }
 
@@ -90,8 +91,8 @@ export function getConfigItems(): PicGoConfigItem[] {
       name: 'manualUploadShortcut',
       type: 'input',
       alias: 'Manual Upload Shortcut',
-      default: '',
-      message: 'Optional. Example: Ctrl+Shift+G. Leave empty to disable the shortcut command.'
+      default: DEFAULT_MANUAL_UPLOAD_SHORTCUT,
+      message: 'Optional preset shortcut shown in PicGo shortcut settings. You can change or disable it there.'
     }
   ]
 }
