@@ -56,7 +56,7 @@ function sanitizeFileName(fileName: string): string {
   const base = path.basename(fileName, ext)
   const cleanBase = base
     .normalize('NFKD')
-    .replace(/[^\w.-]+/g, '-')
+    .replace(/[^\p{L}\p{N}._-]+/gu, '-')
     .replace(/^-+|-+$/g, '')
     .slice(0, 120)
 

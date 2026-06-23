@@ -18,6 +18,12 @@ describe('path helpers', () => {
     expect(buildRemotePath(config, { fileName: 'hello world', extname: '.PNG' })).toBe('assets/picgo/hello-world.png')
   })
 
+  it('preserves non-ASCII file names', () => {
+    expect(buildRemotePath(config, { fileName: '乔治头像_阅读创新点.jpg' })).toBe(
+      'assets/picgo/乔治头像_阅读创新点.jpg'
+    )
+  })
+
   it('adds conflict suffix before extension', () => {
     expect(withConflictSuffix('assets/picgo/hello.png', 'abc123')).toBe('assets/picgo/hello_abc123.png')
   })
