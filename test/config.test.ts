@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { DEFAULT_RAW_URL_TEMPLATE, renderRawUrl } from '../src/config'
+import { DEFAULT_RAW_URL_TEMPLATE, getConfig, renderRawUrl } from '../src/config'
 import { GiteaUploaderConfig } from '../src/types'
 
 const baseConfig: GiteaUploaderConfig = {
@@ -10,7 +10,8 @@ const baseConfig: GiteaUploaderConfig = {
   branch: 'main',
   pathPrefix: '',
   uploadMode: 'immediate',
-  rawUrlTemplate: DEFAULT_RAW_URL_TEMPLATE
+  rawUrlTemplate: DEFAULT_RAW_URL_TEMPLATE,
+  manualUploadShortcut: ''
 }
 
 describe('renderRawUrl', () => {
@@ -32,5 +33,24 @@ describe('renderRawUrl', () => {
         'a b/c.png'
       )
     ).toBe('https://cdn.example.com/team%20name/feat%2Fraw%20urls/a%20b/c.png')
+  })
+})
+
+
+describe('getConfig', () => {
+  it('reads and trims manualUploadShortcut', () => {
+    const config = getConfig({
+      output: [],
+      getConfig: () => ({
+        serverUrl: 'https://gitea.example.com/',
+        token: 'token',
+        owner: 'me',
+        repo: 'images',
+        manualUploadShortcut: ' Ctrl+Shift+G '
+      })
+    })
+
+    expect(config.serverUrl).toBe('https://gitea.example.com')
+    expect(config.manualUploadShortcut).toBe('Ctrl+Shift+G')
   })
 })

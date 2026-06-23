@@ -10,7 +10,8 @@ const config: GiteaUploaderConfig = {
   branch: 'main',
   pathPrefix: 'assets/picgo',
   uploadMode: 'immediate',
-  rawUrlTemplate: ''
+  rawUrlTemplate: '',
+  manualUploadShortcut: ''
 }
 
 describe('path helpers', () => {

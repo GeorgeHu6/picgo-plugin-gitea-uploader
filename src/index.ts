@@ -1,6 +1,6 @@
-import { getConfigItems } from './config'
+import { getConfig, getConfigItems } from './config'
 import { manualUpload, handleUpload } from './uploader'
-import { PicGoContext, PicGoGuiApi } from './types'
+import { PicGoCommandItem, PicGoContext, PicGoGuiApi, PicGoGuiMenuItem } from './types'
 
 const UPLOADER_ID = 'gitea-uploader'
 
@@ -11,33 +11,43 @@ function plugin(ctx: PicGoContext) {
     config: () => getConfigItems()
   }
 
+  async function runManualUpload(actionCtx: PicGoContext, guiApi?: PicGoGuiApi): Promise<void> {
+    await manualUpload(actionCtx)
+    guiApi?.showNotification?.({
+      title: 'Gitea Uploader',
+      body: 'Pending Gitea images uploaded.'
+    })
+  }
+
   return {
     uploader: UPLOADER_ID,
     config: getConfigItems,
     register() {
       ctx.helper?.uploader?.register(UPLOADER_ID, uploader)
     },
-    guiMenu() {
+    guiMenu(_ctx: PicGoContext): PicGoGuiMenuItem[] {
       return [
         {
-          label: 'Upload pending Gitea images',
-          handle: async (_ctx: PicGoContext, guiApi?: PicGoGuiApi) => {
-            await manualUpload(ctx)
-            guiApi?.showNotification?.({
-              title: 'Gitea Uploader',
-              body: 'Pending Gitea images uploaded.'
-            })
-          }
+          label: 'Gitea: Upload Pending Images',
+          handle: async (menuCtx: PicGoContext, guiApi?: PicGoGuiApi) => runManualUpload(menuCtx, guiApi)
         }
       ]
     },
-    commands: [
-      {
-        name: 'manualUpload',
-        label: 'Upload pending Gitea images',
-        handle: () => manualUpload(ctx)
+    commands(commandCtx: PicGoContext): PicGoCommandItem[] {
+      const config = getConfig(commandCtx)
+      if (!config.manualUploadShortcut) {
+        return []
       }
-    ]
+
+      return [
+        {
+          name: 'manualUpload',
+          label: 'Gitea: Upload Pending Images',
+          key: config.manualUploadShortcut,
+          handle: async (shortcutCtx: PicGoContext, guiApi?: PicGoGuiApi) => runManualUpload(shortcutCtx, guiApi)
+        }
+      ]
+    }
   }
 }
 

@@ -10,7 +10,8 @@ const config: GiteaUploaderConfig = {
   branch: 'main',
   pathPrefix: '',
   uploadMode: 'immediate',
-  rawUrlTemplate: ''
+  rawUrlTemplate: '',
+  manualUploadShortcut: ''
 }
 
 describe('GiteaClient', () => {

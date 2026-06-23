@@ -45,6 +45,13 @@ export interface PicGoGuiMenuItem {
   handle: (ctx: PicGoContext, guiApi?: PicGoGuiApi) => Promise<void>
 }
 
+export interface PicGoCommandItem {
+  key: string
+  name: string
+  label: string
+  handle: (ctx: PicGoContext, guiApi?: PicGoGuiApi) => Promise<void>
+}
+
 export interface PicGoConfigItem {
   name: string
   type: 'input' | 'password' | 'list' | 'confirm'
@@ -64,6 +71,7 @@ export interface GiteaUploaderConfig {
   pathPrefix: string
   uploadMode: UploadMode
   rawUrlTemplate: string
+  manualUploadShortcut: string
 }
 
 export interface PendingUpload {

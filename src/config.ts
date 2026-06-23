@@ -15,7 +15,8 @@ export function getConfig(ctx: PicGoContext): GiteaUploaderConfig {
     branch: raw.branch || 'main',
     pathPrefix: trimSlashes(raw.pathPrefix ?? ''),
     uploadMode: normalizeMode(raw.uploadMode),
-    rawUrlTemplate: raw.rawUrlTemplate || DEFAULT_RAW_URL_TEMPLATE
+    rawUrlTemplate: raw.rawUrlTemplate || DEFAULT_RAW_URL_TEMPLATE,
+    manualUploadShortcut: normalizeShortcut(raw.manualUploadShortcut)
   }
 }
 
@@ -84,6 +85,13 @@ export function getConfigItems(): PicGoConfigItem[] {
       type: 'input',
       alias: 'Raw URL Template',
       default: DEFAULT_RAW_URL_TEMPLATE
+    },
+    {
+      name: 'manualUploadShortcut',
+      type: 'input',
+      alias: 'Manual Upload Shortcut',
+      default: '',
+      message: 'Optional. Example: Ctrl+Shift+G. Leave empty to disable the shortcut command.'
     }
   ]
 }
@@ -110,4 +118,8 @@ function trimSlashes(value: string): string {
 
 function normalizeMode(value: unknown): UploadMode {
   return value === 'manual' ? 'manual' : 'immediate'
+}
+
+function normalizeShortcut(value: unknown): string {
+  return typeof value === 'string' ? value.trim() : ''
 }
