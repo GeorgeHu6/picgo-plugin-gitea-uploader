@@ -88,7 +88,7 @@ export function getConfigItems(ctx?: PicGoContext): PicGoConfigItem[] {
       name: 'uploadMode',
       type: 'list',
       alias: translate(ctx, 'GITEA_CONFIG_UPLOAD_MODE'),
-      default: 'immediate',
+      default: translate(ctx, 'GITEA_UPLOAD_MODE_IMMEDIATE'),
       choices: [translate(ctx, 'GITEA_UPLOAD_MODE_IMMEDIATE'), translate(ctx, 'GITEA_UPLOAD_MODE_MANUAL')]
     },
     {

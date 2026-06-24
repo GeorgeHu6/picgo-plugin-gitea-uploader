@@ -39,6 +39,7 @@ describe('i18n', () => {
     const ctx = createI18nContext(LOCALE_ZH_CN)
     const uploadMode = getConfigItems(ctx).find((item) => item.name === 'uploadMode')
 
+    expect(uploadMode?.default).toBe('立即上传')
     expect(uploadMode?.choices).toEqual(['立即上传', '手动批量上传'])
   })
 

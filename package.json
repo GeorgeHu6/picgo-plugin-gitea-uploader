@@ -19,7 +19,8 @@
     "picgo-plugin",
     "gitea",
     "uploader",
-    "image-hosting"
+    "image-hosting",
+    "picgo-gui-plugin"
   ],
   "author": "",
   "license": "MIT",
