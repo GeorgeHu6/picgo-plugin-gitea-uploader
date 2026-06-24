@@ -1,3 +1,4 @@
+import { translate } from './i18n'
 import { GiteaUploaderConfig, PicGoConfigItem, PicGoContext, UploadMode } from './types'
 
 const CONFIG_KEY = 'picBed.gitea-uploader'
@@ -36,72 +37,72 @@ export function validateConfig(config: GiteaUploaderConfig): void {
   }
 }
 
-export function getConfigItems(): PicGoConfigItem[] {
+export function getConfigItems(ctx?: PicGoContext): PicGoConfigItem[] {
   return [
     {
       name: 'serverUrl',
       type: 'input',
-      alias: 'Gitea Server URL',
+      alias: translate(ctx, 'GITEA_CONFIG_SERVER_URL'),
       required: true,
-      message: 'For example: https://gitea.example.com'
+      message: translate(ctx, 'GITEA_CONFIG_SERVER_URL_MESSAGE')
     },
     {
       name: 'token',
       type: 'password',
-      alias: 'Access Token',
+      alias: translate(ctx, 'GITEA_CONFIG_TOKEN'),
       required: true
     },
     {
       name: 'owner',
       type: 'input',
-      alias: 'Repository Owner',
+      alias: translate(ctx, 'GITEA_CONFIG_OWNER'),
       required: true
     },
     {
       name: 'repo',
       type: 'input',
-      alias: 'Repository Name',
+      alias: translate(ctx, 'GITEA_CONFIG_REPO'),
       required: true
     },
     {
       name: 'branch',
       type: 'input',
-      alias: 'Branch',
+      alias: translate(ctx, 'GITEA_CONFIG_BRANCH'),
       default: 'main',
       required: true
     },
     {
       name: 'pathPrefix',
       type: 'input',
-      alias: 'Path Prefix',
+      alias: translate(ctx, 'GITEA_CONFIG_PATH_PREFIX'),
       default: ''
     },
     {
       name: 'fileNameTemplate',
       type: 'input',
-      alias: 'File Name Template',
+      alias: translate(ctx, 'GITEA_CONFIG_FILE_NAME_TEMPLATE'),
       default: DEFAULT_FILE_NAME_TEMPLATE,
-      message: 'Use tokens such as {filename}, {YYYY}, {MM}, {DD}, {md5}, {sha256}, {uuid}, {rand:8}. Extension is always preserved.'
+      message: translate(ctx, 'GITEA_CONFIG_FILE_NAME_TEMPLATE_MESSAGE')
     },
     {
       name: 'uploadMode',
       type: 'list',
-      alias: 'Upload Mode',
+      alias: translate(ctx, 'GITEA_CONFIG_UPLOAD_MODE'),
       default: 'immediate',
       choices: ['immediate', 'manual']
     },
     {
       name: 'rawUrlTemplate',
       type: 'input',
-      alias: 'Raw URL Template',
+      alias: translate(ctx, 'GITEA_CONFIG_RAW_URL_TEMPLATE'),
       default: DEFAULT_RAW_URL_TEMPLATE
     },
     {
       name: 'manualUploadShortcut',
       type: 'input',
-      alias: 'Manual Upload Shortcut',
+      alias: translate(ctx, 'GITEA_CONFIG_MANUAL_UPLOAD_SHORTCUT'),
       default: DEFAULT_MANUAL_UPLOAD_SHORTCUT,
-      message: 'Optional preset shortcut shown in PicGo shortcut settings. You can change or disable it there.'
+      message: translate(ctx, 'GITEA_CONFIG_MANUAL_UPLOAD_SHORTCUT_MESSAGE')
     }
   ]
 }

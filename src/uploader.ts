@@ -1,5 +1,6 @@
 import fs from 'fs/promises'
 import { getConfig, renderRawUrl, validateConfig } from './config'
+import { translate } from './i18n'
 import { GiteaClient, isConflict } from './gitea'
 import { buildRemotePath, contentHash, createUploadId, withConflictSuffix } from './path'
 import {
@@ -37,7 +38,7 @@ export async function manualUpload(ctx: PicGoContext): Promise<void> {
   const state = await loadState()
 
   if (state.pending.length === 0) {
-    ctx.log?.info?.('No pending Gitea uploads.')
+    ctx.log?.info?.(translate(ctx, 'GITEA_LOG_NO_PENDING'))
     return
   }
 
@@ -78,7 +79,7 @@ export async function manualUpload(ctx: PicGoContext): Promise<void> {
 
   state.history = state.history.slice(0, 1000)
   await saveState(state)
-  ctx.log?.success?.(`Uploaded ${files.length} pending image(s) to Gitea.`)
+  ctx.log?.success?.(translate(ctx, 'GITEA_LOG_PENDING_UPLOADED', { count: files.length }))
 }
 
 async function uploadImage(

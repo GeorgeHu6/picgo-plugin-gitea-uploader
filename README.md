@@ -1,5 +1,7 @@
 # picgo-plugin-gitea-uploader
 
+[简体中文](README.zh-CN.md) | English
+
 A PicGo uploader plugin that stores images in a Gitea repository through the Gitea REST API.
 
 ## Features
@@ -9,6 +11,11 @@ A PicGo uploader plugin that stores images in a Gitea repository through the Git
 - Configurable raw URL template for self-hosted Gitea, reverse proxy, and CDN deployments.
 - Local upload history and persistent pending queue.
 - Remote path conflict avoidance through automatic renaming.
+- English, Simplified Chinese, and Traditional Chinese UI labels through PicGo i18n.
+
+## Internationalization
+
+The plugin registers PicGo i18n locale packs for `en`, `zh-CN`, and `zh-TW`. PicGo will show translated plugin configuration labels, menu entries, shortcut labels, and notifications according to the selected app language.
 
 ## Configuration
 

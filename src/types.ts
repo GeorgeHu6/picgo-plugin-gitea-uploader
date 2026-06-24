@@ -19,6 +19,10 @@ export interface PicGoContext {
   }
   getConfig?: <T = unknown>(key: string) => T | undefined
   saveConfig?: (config: Record<string, unknown>) => void
+  i18n?: {
+    addLocale?: (language: string, locales: Record<string, string>) => boolean
+    translate?: (key: string, args?: Record<string, unknown>) => string
+  }
   emit?: (event: string, payload?: unknown) => void
   log?: {
     info?: (message: string) => void
