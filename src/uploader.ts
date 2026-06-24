@@ -89,7 +89,7 @@ async function uploadImage(
   content: Buffer
 ): Promise<void> {
   const importedAt = new Date().toISOString()
-  let remotePath = await resolveAvailablePath(client, buildRemotePath(config, image), content)
+  let remotePath = await resolveAvailablePath(client, buildRemotePath(config, image, content), content)
   let result: GiteaCommitResult
 
   try {
@@ -119,7 +119,7 @@ async function uploadImage(
 
 async function queueImage(config: GiteaUploaderConfig, state: PluginState, image: PicGoImage, content: Buffer): Promise<void> {
   const id = createUploadId()
-  const remotePath = avoidLocalPendingConflict(state, buildRemotePath(config, image), content)
+  const remotePath = avoidLocalPendingConflict(state, buildRemotePath(config, image, content), content)
   const rawUrl = renderRawUrl(config, remotePath)
   const localPath = await savePendingContent(id, remotePath, content)
 

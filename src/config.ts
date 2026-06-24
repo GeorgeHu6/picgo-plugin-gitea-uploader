@@ -4,6 +4,7 @@ const CONFIG_KEY = 'picBed.gitea-uploader'
 
 export const DEFAULT_RAW_URL_TEMPLATE = '{host}/{owner}/{repo}/raw/branch/{branch}/{path}'
 export const DEFAULT_MANUAL_UPLOAD_SHORTCUT = 'Ctrl+Shift+G'
+export const DEFAULT_FILE_NAME_TEMPLATE = '{filename}'
 
 export function getConfig(ctx: PicGoContext): GiteaUploaderConfig {
   const raw = ctx.getConfig?.<Partial<GiteaUploaderConfig>>(CONFIG_KEY) ?? {}
@@ -15,6 +16,7 @@ export function getConfig(ctx: PicGoContext): GiteaUploaderConfig {
     repo: raw.repo ?? '',
     branch: raw.branch || 'main',
     pathPrefix: trimSlashes(raw.pathPrefix ?? ''),
+    fileNameTemplate: normalizeFileNameTemplate(raw.fileNameTemplate),
     uploadMode: normalizeMode(raw.uploadMode),
     rawUrlTemplate: raw.rawUrlTemplate || DEFAULT_RAW_URL_TEMPLATE,
     manualUploadShortcut: normalizeShortcut(raw.manualUploadShortcut) || DEFAULT_MANUAL_UPLOAD_SHORTCUT
@@ -75,6 +77,13 @@ export function getConfigItems(): PicGoConfigItem[] {
       default: ''
     },
     {
+      name: 'fileNameTemplate',
+      type: 'input',
+      alias: 'File Name Template',
+      default: DEFAULT_FILE_NAME_TEMPLATE,
+      message: 'Use tokens such as {filename}, {YYYY}, {MM}, {DD}, {md5}, {sha256}, {uuid}, {rand:8}. Extension is always preserved.'
+    },
+    {
       name: 'uploadMode',
       type: 'list',
       alias: 'Upload Mode',
@@ -123,4 +132,11 @@ function normalizeMode(value: unknown): UploadMode {
 
 function normalizeShortcut(value: unknown): string {
   return typeof value === 'string' ? value.trim() : ''
+}
+
+function normalizeFileNameTemplate(value: unknown): string {
+  if (typeof value !== 'string') {
+    return DEFAULT_FILE_NAME_TEMPLATE
+  }
+  return value.trim() || DEFAULT_FILE_NAME_TEMPLATE
 }

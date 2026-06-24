@@ -69,6 +69,7 @@ export interface GiteaUploaderConfig {
   repo: string
   branch: string
   pathPrefix: string
+  fileNameTemplate: string
   uploadMode: UploadMode
   rawUrlTemplate: string
   manualUploadShortcut: string

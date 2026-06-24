@@ -9,6 +9,7 @@ const config: GiteaUploaderConfig = {
   repo: 'images',
   branch: 'main',
   pathPrefix: '',
+  fileNameTemplate: '{filename}',
   uploadMode: 'immediate',
   rawUrlTemplate: '',
   manualUploadShortcut: ''

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { DEFAULT_MANUAL_UPLOAD_SHORTCUT, DEFAULT_RAW_URL_TEMPLATE, getConfig, renderRawUrl } from '../src/config'
+import { DEFAULT_FILE_NAME_TEMPLATE, DEFAULT_MANUAL_UPLOAD_SHORTCUT, DEFAULT_RAW_URL_TEMPLATE, getConfig, renderRawUrl } from '../src/config'
 import { GiteaUploaderConfig } from '../src/types'
 
 const baseConfig: GiteaUploaderConfig = {
@@ -9,6 +9,7 @@ const baseConfig: GiteaUploaderConfig = {
   repo: 'images',
   branch: 'main',
   pathPrefix: '',
+  fileNameTemplate: DEFAULT_FILE_NAME_TEMPLATE,
   uploadMode: 'immediate',
   rawUrlTemplate: DEFAULT_RAW_URL_TEMPLATE,
   manualUploadShortcut: DEFAULT_MANUAL_UPLOAD_SHORTCUT
@@ -52,6 +53,15 @@ describe('getConfig', () => {
 
     expect(config.serverUrl).toBe('https://gitea.example.com')
     expect(config.manualUploadShortcut).toBe('Ctrl+Shift+G')
+  })
+
+  it('uses the default fileNameTemplate', () => {
+    const config = getConfig({
+      output: [],
+      getConfig: () => ({})
+    })
+
+    expect(config.fileNameTemplate).toBe(DEFAULT_FILE_NAME_TEMPLATE)
   })
 
   it('uses the default manualUploadShortcut so PicGo can expose the command', () => {
