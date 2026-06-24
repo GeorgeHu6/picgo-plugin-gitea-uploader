@@ -55,6 +55,17 @@ describe('getConfig', () => {
     expect(config.manualUploadShortcut).toBe('Ctrl+Shift+G')
   })
 
+  it('normalizes localized manual upload mode labels', () => {
+    const config = getConfig({
+      output: [],
+      getConfig: () => ({
+        uploadMode: '手动批量上传'
+      })
+    })
+
+    expect(config.uploadMode).toBe('manual')
+  })
+
   it('uses the default fileNameTemplate', () => {
     const config = getConfig({
       output: [],

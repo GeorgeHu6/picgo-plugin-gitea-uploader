@@ -35,6 +35,13 @@ describe('i18n', () => {
     expect(items.find((item) => item.name === 'manualUploadShortcut')?.alias).toBe('手动上传快捷键')
   })
 
+  it('translates upload mode choices in Simplified Chinese', () => {
+    const ctx = createI18nContext(LOCALE_ZH_CN)
+    const uploadMode = getConfigItems(ctx).find((item) => item.name === 'uploadMode')
+
+    expect(uploadMode?.choices).toEqual(['立即上传', '手动批量上传'])
+  })
+
   it('translates menu and command labels in Simplified Chinese', () => {
     const ctx = createI18nContext(LOCALE_ZH_CN)
     const instance = plugin(ctx)

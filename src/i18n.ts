@@ -16,6 +16,8 @@ export const LOCALE_EN = {
   GITEA_CONFIG_FILE_NAME_TEMPLATE: 'File Name Template',
   GITEA_CONFIG_FILE_NAME_TEMPLATE_MESSAGE: 'Use tokens such as {filename}, {YYYY}, {MM}, {DD}, {md5}, {sha256}, {uuid4}, {rand:8}. Extension is always preserved.',
   GITEA_CONFIG_UPLOAD_MODE: 'Upload Mode',
+  GITEA_UPLOAD_MODE_IMMEDIATE: 'Immediate upload',
+  GITEA_UPLOAD_MODE_MANUAL: 'Manual batch upload',
   GITEA_CONFIG_RAW_URL_TEMPLATE: 'Raw URL Template',
   GITEA_CONFIG_MANUAL_UPLOAD_SHORTCUT: 'Manual Upload Shortcut',
   GITEA_CONFIG_MANUAL_UPLOAD_SHORTCUT_MESSAGE: 'Optional preset shortcut shown in PicGo shortcut settings. You can change or disable it there.'
@@ -37,6 +39,8 @@ export const LOCALE_ZH_CN = {
   GITEA_CONFIG_FILE_NAME_TEMPLATE: '文件命名模板',
   GITEA_CONFIG_FILE_NAME_TEMPLATE_MESSAGE: '可使用 {filename}、{YYYY}、{MM}、{DD}、{md5}、{sha256}、{uuid4}、{rand:8} 等模板；始终保留原始扩展名。',
   GITEA_CONFIG_UPLOAD_MODE: '上传模式',
+  GITEA_UPLOAD_MODE_IMMEDIATE: '立即上传',
+  GITEA_UPLOAD_MODE_MANUAL: '手动批量上传',
   GITEA_CONFIG_RAW_URL_TEMPLATE: 'Raw URL 模板',
   GITEA_CONFIG_MANUAL_UPLOAD_SHORTCUT: '手动上传快捷键',
   GITEA_CONFIG_MANUAL_UPLOAD_SHORTCUT_MESSAGE: '显示在 PicGo 快捷键设置中的默认快捷键，可在 PicGo 中修改或禁用。'
@@ -59,6 +63,8 @@ export const LOCALE_ZH_TW = {
   GITEA_CONFIG_FILE_NAME_TEMPLATE: '檔案命名模板',
   GITEA_CONFIG_FILE_NAME_TEMPLATE_MESSAGE: '可使用 {filename}、{YYYY}、{MM}、{DD}、{md5}、{sha256}、{uuid4}、{rand:8} 等模板；始終保留原始副檔名。',
   GITEA_CONFIG_UPLOAD_MODE: '上傳模式',
+  GITEA_UPLOAD_MODE_IMMEDIATE: '立即上傳',
+  GITEA_UPLOAD_MODE_MANUAL: '手動批次上傳',
   GITEA_CONFIG_RAW_URL_TEMPLATE: 'Raw URL 模板',
   GITEA_CONFIG_MANUAL_UPLOAD_SHORTCUT: '手動上傳快捷鍵',
   GITEA_CONFIG_MANUAL_UPLOAD_SHORTCUT_MESSAGE: '顯示在 PicGo 快捷鍵設定中的預設快捷鍵，可在 PicGo 中修改或停用。'

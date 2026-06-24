@@ -89,7 +89,7 @@ export function getConfigItems(ctx?: PicGoContext): PicGoConfigItem[] {
       type: 'list',
       alias: translate(ctx, 'GITEA_CONFIG_UPLOAD_MODE'),
       default: 'immediate',
-      choices: ['immediate', 'manual']
+      choices: [translate(ctx, 'GITEA_UPLOAD_MODE_IMMEDIATE'), translate(ctx, 'GITEA_UPLOAD_MODE_MANUAL')]
     },
     {
       name: 'rawUrlTemplate',
@@ -128,7 +128,19 @@ function trimSlashes(value: string): string {
 }
 
 function normalizeMode(value: unknown): UploadMode {
-  return value === 'manual' ? 'manual' : 'immediate'
+  if (typeof value !== 'string') {
+    return 'immediate'
+  }
+
+  const normalized = value.trim().toLowerCase()
+  const manualLabels = new Set([
+    'manual',
+    'manual batch upload',
+    '手动批量上传',
+    '手動批次上傳'
+  ])
+
+  return manualLabels.has(normalized) ? 'manual' : 'immediate'
 }
 
 function normalizeShortcut(value: unknown): string {
