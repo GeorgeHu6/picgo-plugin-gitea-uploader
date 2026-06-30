@@ -1,7 +1,7 @@
 {
   "name": "picgo-plugin-gitea-uploader",
-  "version": "1.0.2",
-  "description": "A PicGo uploader plugin for Gitea repository image hosting.",
+  "version": "1.0.3",
+  "description": "PicGo Gitea uploader plugin for uploading images to Gitea repositories.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -20,10 +20,18 @@
   "keywords": [
     "picgo",
     "picgo-plugin",
+    "picgo-gui-plugin",
     "gitea",
+    "gitea-uploader",
+    "gitea uploader",
+    "picgo-gitea",
+    "picgo gitea",
+    "picgo-plugin-gitea-uploader",
     "uploader",
+    "image-uploader",
+    "repository-uploader",
     "image-hosting",
-    "picgo-gui-plugin"
+    "gitea-image-hosting"
   ],
   "author": "GeorgeHu6",
   "license": "MIT",
