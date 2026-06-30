@@ -13,6 +13,14 @@
 - 远端路径冲突时自动改名，不覆盖已有文件。
 - 通过 PicGo i18n 支持英文、简体中文和繁体中文界面文案。
 
+## 安装
+
+在 PicGo 的插件页面搜索 `picgo-plugin-gitea-uploader`。如果常规搜索结果中没有出现本插件，可以使用精确的 npm keyword 搜索：
+
+```text
+keywords:picgo-plugin-gitea-uploader
+```
+
 ## 国际化
 
 插件会注册 PicGo i18n 语言包：`en`、`zh-CN`、`zh-TW`。PicGo 会根据应用语言显示对应的插件配置项、菜单项、快捷键名称和通知文案。
